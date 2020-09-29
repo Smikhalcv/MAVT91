@@ -1,0 +1,38 @@
+{% extends 'mapping/base.html' %}
+
+{% block mapping %}
+    <div class="block_content">
+        <h1 class="title_project">Show coordinates</h1>
+        <div class="coordinates">
+            <dl>
+                {% for coordinates in data %}
+                    <dt class="point">
+                        {% cycle 'row1' 'row2' as rowcolor silent %}
+                        {% for point in coordinates.coordinates %}
+                            <span class="item_point" >{% cycle 'Широта - ' 'Долгота - ' %}{{point}}</span>
+                        {% endfor %}
+                    </dt>
+                {% endfor %}
+            </dl>
+
+
+        </div>
+        <div class="paginator">
+            <span>
+                {% if data.has_previous %}
+                    <a class="links" href="?page=1">&laquo; first</a>
+                    <a class="links" href="?page={{ data.previous_page_number }}">previous</a>
+                {% endif %}
+
+                <span style="font-style: italic; font-size: 20px;">
+                    Page {{ data.number }} of {{ data.paginator.num_pages }}.
+                </span>
+
+                {% if data.has_next %}
+                    <a class="links" href="?page={{ data.next_page_number }}">next</a>
+                    <a class="links" href="?page={{ data.paginator.num_pages }}">last &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+    </div>
+{% endblock %}

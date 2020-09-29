@@ -1,0 +1,35 @@
+{% extends 'mapping/base.html' %}
+
+{% block mapping %}
+    <div class="block_content">
+        <h1 class="title_project">Mapping</h1>
+        <div class="map">
+            <div id="map"></div>
+
+            <script type='text/javascript'>
+
+                //Определяем карту, координаты центра и начальный масштаб
+                var map = L.map('map').setView([52.8889, 30.02825], 12);
+
+                //Добавляем на нашу карту слой OpenStreetMap
+                L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '&copy; <a rel="nofollow" href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                    }).addTo(map);
+
+                map.on("click", function(e){
+                    new L.Marker([e.latlng.lat, e.latlng.lng]).addTo(map);
+                    let coordinate = [e.latlng.lat, e.latlng.lng];
+
+                    $.ajax({
+                      url: "/get_coordinate/",
+                      type: "POST",
+                      data: {
+                        'csrfmiddlewaretoken': '{{ csrf_token }}',
+                        'coordinate': [e.latlng.lat, e.latlng.lng],
+                          },
+                        });
+                    })
+            </script>
+        </div>
+    </div>
+{% endblock %}

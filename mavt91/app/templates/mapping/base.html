@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mapping</title>
+    <link rel="stylesheet" href="/static/js/leaflet/leaflet.css" />
+    <link rel="stylesheet" href="/static/css/base.css" />
+    <script src="/static/js/leaflet/leaflet.js"></script>
+    <script src="/static/js/jQery-3.5.1.min.js"></script>
+
+    <style>
+    #map {width: 1600px; height: 800px; }
+    </style>
+</head>
+<body class="body">
+    <div class="main_menu">
+        <a class='link_main_menu' title='Главное меню' href="/">Main menu</a>
+        <a class='link_mapping' title='Карта Leaflet' href="/mapping/">Mapping</a>
+        <a class="link_show_coordinates" title='Проставленные координаты' href="/show_coordinates/">Show coordinates</a>
+    </div>
+    {% block mapping %}
+    <div class="block_content">
+        <h1 class="title_project">MAVT91</h1>
+        <div class="text_base">
+            <p class="line_text_base">Здравствуйте! </p>
+            <p class="line_text_base">Вы находитесь на главное странице сайта тестового задания для группы компаний Ask42.</p>
+            <p class="line_text_base">В данном проекте реализованно FrontEnd часть по средствам HTML, CSS и JavaScript(Leaflet).</p>
+            <p class="line_text_base">BackEnd часть предствлена языком Python 3 на основе фреймворка Django.</p>
+            <p class="line_text_base">Цель проекта состоит в записи координат, указанных точек в бызу данных (PostgeSQL) и ихвыводе.</p>
+            <p class="line_text_base">Во FrontEnd часть по средствам Ajax запроса осуществляется передача данных на сервер Django.</p>
+            <p class="line_text_base">На серверной части - данные заносятся в базу данных и извлекаются для отображения.</p>
+        </div>
+    </div>
+    {% endblock %}
+</body>
+</html>
